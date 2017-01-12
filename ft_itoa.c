@@ -11,7 +11,6 @@
 /* ************************************************************************** */
 
 #include "libft.h"
-#include <stdlib.h>
 
 static void		ft_itoa_is_neg(int *n, int *negative)
 {

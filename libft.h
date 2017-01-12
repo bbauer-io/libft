@@ -6,14 +6,17 @@
 /*   By: bbauer <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/02 11:53:06 by bbauer            #+#    #+#             */
-/*   Updated: 2016/11/16 07:32:01 by bbauer           ###   ########.fr       */
+/*   Updated: 2017/01/12 13:50:16 by bbauer           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef LIBFT_H
 # define LIBFT_H
 
-# include <string.h>
+# include <stdlib.h>
+# include <unistd.h>
+
+# define BUFF_SIZE 1024
 
 typedef struct		s_list
 {
@@ -22,6 +25,16 @@ typedef struct		s_list
 	struct s_list	*next;
 }					t_list;
 
+
+typedef struct		s_gnl
+{
+	int				fd;
+	char			*current_line;
+	char			*file;
+	struct s_gnl	*next;
+}					t_gnl;
+
+int					get_next_line(int const fd, char **line);
 void				*ft_realloc(void *ptr, size_t size_original,
 						size_t size_add);
 int					ft_atoi(char const *str);
