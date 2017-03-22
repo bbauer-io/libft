@@ -1,25 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putstr.c                                        :+:      :+:    :+:   */
+/*   ft_wstrnsize_utf8.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bbauer <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/11/07 07:08:08 by bbauer            #+#    #+#             */
-/*   Updated: 2017/01/19 18:06:12 by bbauer           ###   ########.fr       */
+/*   Created: 2017/02/17 02:38:04 by bbauer            #+#    #+#             */
+/*   Updated: 2017/02/17 02:38:06 by bbauer           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int		ft_putstr(char const *s)
-{
-	int		i;
+/*
+** Returns the number of bytes needed to represent a string of up to 'n' unicode
+** code points after it has been encoded to UTF-8.
+*/
 
-	i = 0;
-	if (!s)
+size_t			ft_wstrnsize_utf8(const wchar_t *wstr, size_t n)
+{
+	size_t		size;
+	size_t		i;
+
+	if (!wstr)
 		return (0);
-	while (s[i] != '\0')
-		ft_putchar(s[i++]);
-	return (i);
+	i = 0;
+	size = 0;
+	while (wstr[i] != '\0' && i < n)
+		size += ft_wcharsize_utf8(wstr[i++]);
+	return (size);
 }

@@ -1,25 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putstr.c                                        :+:      :+:    :+:   */
+/*   ft_wctomb.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bbauer <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/11/07 07:08:08 by bbauer            #+#    #+#             */
-/*   Updated: 2017/01/19 18:06:12 by bbauer           ###   ########.fr       */
+/*   Created: 2017/02/16 11:26:24 by bbauer            #+#    #+#             */
+/*   Updated: 2017/02/16 11:26:36 by bbauer           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int		ft_putstr(char const *s)
+int				ft_wctomb(char *s, wchar_t wc)
 {
-	int		i;
+	int			len;
+	size_t		i;
 
 	i = 0;
-	if (!s)
-		return (0);
-	while (s[i] != '\0')
-		ft_putchar(s[i++]);
-	return (i);
+	len = ft_utf8charsize(wc);
+	if (len >= 4)
+		s[i++] = (0xFF000000 & wc) >> 24;
+	if (len >= 3)
+		s[i++] = (0xFF0000 & wc) >> 16;
+	if (len >= 2)
+		s[i++] = (0xFF00 & wc) >> 8;
+	if (len >= 1)
+		s[i++] = 0xFF & wc;
+	return (len);
 }

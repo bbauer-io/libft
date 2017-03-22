@@ -1,25 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putstr.c                                        :+:      :+:    :+:   */
+/*   ft_wstrcpy.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bbauer <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/11/07 07:08:08 by bbauer            #+#    #+#             */
-/*   Updated: 2017/01/19 18:06:12 by bbauer           ###   ########.fr       */
+/*   Created: 2017/02/16 23:36:39 by bbauer            #+#    #+#             */
+/*   Updated: 2017/02/16 23:37:18 by bbauer           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int		ft_putstr(char const *s)
+wchar_t		*ft_wstrcpy(wchar_t *dst, wchar_t const *src)
 {
 	int		i;
 
 	i = 0;
-	if (!s)
-		return (0);
-	while (s[i] != '\0')
-		ft_putchar(s[i++]);
-	return (i);
+	while (src[i] != '\0')
+	{
+		dst[i] = src[i];
+		i++;
+	}
+	dst[i] = '\0';
+	return (dst);
 }

@@ -1,25 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putstr.c                                        :+:      :+:    :+:   */
+/*   ft_utf8charsize.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bbauer <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/11/07 07:08:08 by bbauer            #+#    #+#             */
-/*   Updated: 2017/01/19 18:06:12 by bbauer           ###   ########.fr       */
+/*   Created: 2017/02/16 11:07:07 by bbauer            #+#    #+#             */
+/*   Updated: 2017/02/16 11:25:44 by bbauer           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int		ft_putstr(char const *s)
-{
-	int		i;
+/*
+** returns the number of bytes being used to represent a UTF-8 character which
+** is stored in a wchar_t.
+*/
 
-	i = 0;
-	if (!s)
-		return (0);
-	while (s[i] != '\0')
-		ft_putchar(s[i++]);
-	return (i);
+size_t		ft_utf8charsize(wchar_t c)
+{
+	unsigned int	f;
+
+	f = c;
+	if (f <= 0xFF)
+		return (1);
+	if (f <= 0xFFFF)
+		return (2);
+	if (f <= 0xFFFFFF)
+		return (3);
+	if (f <= 0xFFFFFFFF)
+		return (4);
+	return (0);
 }

@@ -1,25 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putstr.c                                        :+:      :+:    :+:   */
+/*   ft_wchar_memset.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bbauer <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/11/07 07:08:08 by bbauer            #+#    #+#             */
-/*   Updated: 2017/01/19 18:06:12 by bbauer           ###   ########.fr       */
+/*   Created: 2017/02/16 23:50:17 by bbauer            #+#    #+#             */
+/*   Updated: 2017/02/17 00:14:24 by bbauer           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int		ft_putstr(char const *s)
+void	*ft_wchar_memset(void *b, wchar_t c, size_t len)
 {
-	int		i;
+	unsigned int	i;
+	wchar_t			*b2;
 
+	b2 = b;
 	i = 0;
-	if (!s)
-		return (0);
-	while (s[i] != '\0')
-		ft_putchar(s[i++]);
-	return (i);
+	while (i < len)
+	{
+		b2[i] = (wchar_t)c;
+		i++;
+	}
+	return (b);
 }
