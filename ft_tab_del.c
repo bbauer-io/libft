@@ -1,19 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putchar_fd.c                                    :+:      :+:    :+:   */
+/*   ft_tab_del.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bbauer <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/11/09 17:50:23 by bbauer            #+#    #+#             */
-/*   Updated: 2017/01/12 13:32:54 by bbauer           ###   ########.fr       */
+/*   Created: 2016/04/13 13:16:57 by bbauer            #+#    #+#             */
+/*   Updated: 2016/04/13 13:19:39 by bbauer           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	ft_putchar_fd(char c, int fd)
+/*
+** Erases and frees a table of strings, then sets the table's pointer to NULL.
+*/
+
+void		ft_tab_del(char ***tab)
 {
-	write(fd, &c, 1);
+	int		i;
+
+	i = 0;
+	if (tab && *tab)
+	{
+		while ((*tab)[i])
+			ft_strdel(&(*tab)[i++]);
+		free(*tab);
+		*tab = NULL;
+	}
 	return ;
 }

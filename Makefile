@@ -6,7 +6,7 @@
 #    By: bbauer <marvin@42.fr>                      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/11/03 16:20:35 by bbauer            #+#    #+#              #
-#    Updated: 2017/03/21 17:24:29 by bbauer           ###   ########.fr        #
+#    Updated: 2017/05/24 21:34:22 by bbauer           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -29,8 +29,14 @@ SRC = ft_atoi.c ft_bzero.c ft_isalnum.c ft_isalpha.c ft_isascii.c ft_isdigit.c \
 	  ft_utf8strencode.c ft_utf8strnencode.c ft_wchar_memset.c ft_wcharbits.c \
 	  ft_wcharsize_utf8.c ft_wctomb.c ft_wrdcnt.c ft_wrdcntd.c ft_wrdlen.c \
 	  ft_wrdsplit.c ft_wstrcpy.c ft_wstrdup.c ft_wstrlen.c ft_wstrndup.c \
-	  ft_wstrnsize_utf8.c ft_wstrsize_utf8.c get_next_line.c
+	  ft_wstrnsize_utf8.c ft_wstrsize_utf8.c get_next_line.c ft_strtok.c \
+	  ft_strcdup.c ft_tab_add_one.c ft_tab_cat.c ft_tab_del.c ft_tab_dup.c \
+	  ft_tab_ncat.c ft_tab_new.c ft_tab_rem_one.c ft_print_tab.c ft_strcspn.c \
+	  ft_strbeginequ.c ft_smallest_int.c ft_tab_len.c ft_ints_are_sorted.c \
+	  ft_print_arr.c ft_ints_are_rev_sorted.c ft_int_sort.c ft_int_sort_rev.c \
+	  ft_atol.c
 
+OBJDIR = ./obj/
 OPT = $(SRC:.c=.o)
 HEADER = ./libft.h
 FLAGS = -c -Wall -Wextra -Werror
@@ -38,15 +44,21 @@ FLAGS = -c -Wall -Wextra -Werror
 all: $(NAME)
 
 $(NAME):
-	gcc $(OPTIONS) $(SRC) $(FLAGS)
-	ar rc $(NAME) $(OPT)
-	ranlib $(NAME)
+	@echo "Compiling libft"
+	@gcc $(OPTIONS) $(SRC) $(FLAGS)
+	@ar rc $(NAME) $(OPT)
+	@mkdir $(OBJDIR)
+	@mv $(OPT) $(OBJDIR)
+	@ranlib $(NAME)
+	@echo "lift: SUCCESS!"
 
 clean:
-	/bin/rm -f $(OPT)
+	@echo "Cleaning libft"
+	@/bin/rm -rf $(OBJDIR)
 
 fclean: clean
-	/bin/rm -f $(NAME)
-	/bin/rm -f libft.h.gch
+	@echo "FCleaning libft"
+	@/bin/rm -f $(NAME)
+	@/bin/rm -f libft.h.gch
 
 re: fclean all

@@ -32,7 +32,8 @@ char	**ft_strsplit(char const *s, char c)
 	{
 		while (s[i] == c)
 			i++;
-		wl[k] = (char *)malloc(sizeof(char *) * ft_wrdlen((char *)&s[i], c));
+		wl[k] =
+			(char *)malloc(sizeof(char) * (ft_wrdlen((char *)&s[i], c) + 1));
 		if (!wl[k])
 			return (NULL);
 		ft_strncpy(wl[k], &s[i], ft_wrdlen((char *)&s[i], c));

@@ -1,19 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putchar_fd.c                                    :+:      :+:    :+:   */
+/*   ft_tab_new.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bbauer <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/11/09 17:50:23 by bbauer            #+#    #+#             */
-/*   Updated: 2017/01/12 13:32:54 by bbauer           ###   ########.fr       */
+/*   Created: 2016/04/15 13:16:57 by bbauer            #+#    #+#             */
+/*   Updated: 2016/04/15 13:19:39 by bbauer           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	ft_putchar_fd(char c, int fd)
+char	**ft_tab_new(size_t tab_len)
 {
-	write(fd, &c, 1);
-	return ;
+	char	**new_tab;
+
+	new_tab = (char **)malloc(sizeof(char *) * (tab_len + 1));
+	ft_bzero(new_tab, sizeof(char *) * (tab_len + 1));
+	return (new_tab);
 }

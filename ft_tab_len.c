@@ -1,19 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putchar_fd.c                                    :+:      :+:    :+:   */
+/*   ft_tab_len.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bbauer <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: bbauer <bbauer@student.42.us.org>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/11/09 17:50:23 by bbauer            #+#    #+#             */
-/*   Updated: 2017/01/12 13:32:54 by bbauer           ###   ########.fr       */
+/*   Created: 2017/05/09 15:31:15 by bbauer            #+#    #+#             */
+/*   Updated: 2017/05/09 15:33:05 by bbauer           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	ft_putchar_fd(char c, int fd)
+/*
+** Returns the number of entries in a char ** table.
+*/
+
+int			ft_tab_len(char **tab)
 {
-	write(fd, &c, 1);
-	return ;
+	int		i;
+
+	i = 0;
+	while (tab && tab[i])
+		i++;
+	return (i);
 }

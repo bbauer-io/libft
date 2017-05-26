@@ -1,35 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strequ.c                                        :+:      :+:    :+:   */
+/*   ft_largest_int.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bbauer <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: bbauer <bbauer@student.42.us.org>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/11/14 11:51:43 by bbauer            #+#    #+#             */
-/*   Updated: 2016/11/14 12:23:05 by bbauer           ###   ########.fr       */
+/*   Created: 2017/05/05 14:44:28 by bbauer            #+#    #+#             */
+/*   Updated: 2017/05/24 17:36:45 by bbauer           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
 /*
-** Returns 1 if two strings match exactly.
+** returns the index of the largest int found in an array of specified size.
 */
 
-int		ft_strequ(char const *s1, char const *s2)
+int		ft_largest_int(int *arr, int size)
 {
+	int		largest;
+	int		lg_index;
 	int		i;
 
-	i = 0;
-	if (!s1 || !s2)
-		return (0);
-	if (*s1 == '\0' && *s2 == '\0')
-		return (1);
-	while (s1[i] == s2[i])
+	largest = arr[0];
+	lg_index = 0;
+	i = 1;
+	while (i < size)
 	{
-		if (s1[i] == '\0')
-			return (1);
+		if (arr[i] > largest)
+		{
+			largest = arr[i];
+			lg_index = i;
+		}
 		i++;
 	}
-	return (0);
+	return (lg_index);
 }

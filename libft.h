@@ -6,7 +6,7 @@
 /*   By: bbauer <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/02 11:53:06 by bbauer            #+#    #+#             */
-/*   Updated: 2017/03/02 13:50:23 by bbauer           ###   ########.fr       */
+/*   Updated: 2017/05/24 21:33:55 by bbauer           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,10 @@
 # include <stdint.h>
 
 # define BUFF_SIZE 1024
+# define NELEMS(A) (sizeof(A) / sizeof((A)[0])
+# define MAX(A, B) (((A) > (B)) ? (A) : (B))
+# define MIN(A, B) (((A) < (B)) ? (A) : (B))
+# define ABS(A) ((A) < 0 ? -(A) : (A))
 
 typedef struct		s_list
 {
@@ -27,14 +31,6 @@ typedef struct		s_list
 	size_t			content_size;
 	struct s_list	*next;
 }					t_list;
-
-typedef struct		s_gnl
-{
-	int				fd;
-	char			*current_line;
-	char			*file;
-	struct s_gnl	*next;
-}					t_gnl;
 
 typedef char		t_utf8;
 
@@ -65,15 +61,16 @@ char				*ft_itoa_base_uintmax(uintmax_t value, int base);
 char				*ft_itoa_base_intmax(intmax_t value, int base);
 void				ft_putnbr_llong(long long n);
 
-
 /*
 ** String manipulation
 */
 
+char				**ft_strtok(char *str, char *sep);
 void				ft_strclr(char *s);
 char				*ft_strcat(char *s1, char const *s2);
 char				*ft_strncat(char *s1, char const *s2, size_t n);
 size_t				ft_strlcat(char *dst, char const *src, size_t size);
+char				*ft_strcdup(char *str, char c);
 char				*ft_strcpy(char *dst, char const *src);
 char				*ft_strncpy(char *dst, char const *src, size_t len);
 void				ft_strdel(char **as);
@@ -93,6 +90,19 @@ char				*ft_toupper_str(char *str);
 char				**ft_wrdsplit(char const *s);
 
 /*
+** Functions for working with tables (char ** arrays)
+*/
+
+char				**ft_tab_add_one(char **src_tab, char *new_item);
+void				ft_tab_cat(char **dst, char **src);
+void				ft_tab_del(char ***tab);
+char				**ft_tab_dup(char **tab);
+int					ft_tab_len(char **tab);
+void				ft_tab_ncat(char **dst, char **src, size_t n);
+char				**ft_tab_new(size_t tab_len);
+char				**ft_tab_rem_one(char **src, size_t rem);
+
+/*
 ** String tests
 */
 
@@ -100,6 +110,7 @@ size_t				ft_nbrlen(int nbr);
 char				*ft_strchr(char const *s, int c);
 char				*ft_strrchr(char const *s, int c);
 int					ft_strequ(char const *s1, char const *s2);
+int					ft_strbeginequ(char const *s1, char const *s2);
 int					ft_strnequ(char const *s1, char const *s2, size_t n);
 size_t				ft_strlen(char const *str);
 int					ft_strcmp(char const *s1, char const *s2);
@@ -110,6 +121,7 @@ char				*ft_strnstr(char const *str, char const *to_find,
 int					ft_wrdcnt(char *s);
 int					ft_wrdcntd(char *str, char delimiter);
 int					ft_wrdlen(char *str, char delimiter);
+size_t				ft_strcspn(const char *s1, const char s2);
 
 /*
 ** char tests
@@ -129,6 +141,7 @@ int					ft_tolower(int c);
 */
 
 int					ft_atoi(char const *str);
+long				ft_atol(char const *str);
 char				*ft_itoa(int n);
 char				*ft_itoa_base(int value, int base);
 
@@ -166,6 +179,7 @@ void				ft_putendl(char const *s);
 void				ft_putendl_fd(char const *s, int fd);
 void				ft_putnbr(int n);
 void				ft_putnbr_fd(int n, int fd);
+void				ft_print_tab(char **tab);
 
 /*
 ** Linked list functions
@@ -180,5 +194,17 @@ t_list				*ft_lstmap(t_list *lst, t_list *(*f)(t_list *elem));
 t_list				*ft_lstnew(void const *content, size_t content_size);
 int					ft_lst_len(t_list *begin_list);
 size_t				ft_lst_free_contents(void *content, size_t content_size);
+
+/*
+** Array functions.
+*/
+
+int					ft_largest_int(int *arr, int size);
+int					ft_smallest_int(int *arr, int size);
+int					*ft_int_sort(int *arr, int len);
+int					*ft_int_sort_rev(int *arr, int len);
+int					ft_ints_are_sorted(int *ints, int len);
+int					ft_ints_are_rev_sorted(int *ints, int len);
+void				ft_print_arr(int *arr, int len);
 
 #endif
